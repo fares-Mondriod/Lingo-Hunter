@@ -32,8 +32,11 @@ dart pub get
 LingoHunter supports multiple ways to define translatable strings in your Flutter project. The following formats are automatically detected:
 
 ### ✅ **GetX (`.tr()`)**
+
 - `"Hello".tr();`
 - `'Welcome'.tr();`
+- `context.tr("settings");`
+- `context.tr('profile');`
 - `"Hi".tr;`
 - `'Goodbye'.tr;`
 - `"Message".tr(context);`
@@ -45,9 +48,11 @@ LingoHunter supports multiple ways to define translatable strings in your Flutte
 - `"Hello, {name}".tr(args: ["John"]);`
 
 ### ✅ **Pluralization (`plural()`)**
+
 - `"new_message".plural(3);`
 
 ### ✅ **Flutter's `intl` Package**
+
 - `AppLocalizations.of(context)!.translate("hello");`
 
 ---
@@ -71,6 +76,7 @@ void main() async {
 ```
 
 #### **Example Input in Code:**
+
 ```dart
 "Hello".tr();
 'Welcome'.tr();
@@ -79,6 +85,7 @@ void main() async {
 ```
 
 #### **Generated Output (translations_en.json)**
+
 ```json
 {
   "Hello": "Hello",
@@ -89,6 +96,7 @@ void main() async {
 ```
 
 #### **Generated Output (translations_ar.json, translations_fr.json, translations_es.json)**
+
 ```json
 {
   "Hello": "",
@@ -122,11 +130,13 @@ void main() async {
 ```
 
 #### **Example Input in Code:**
+
 ```dart
 AppLocalizations.of(context)!.translate("hello");
 ```
 
 #### **Generated Output (translations_en.json)**
+
 ```json
 {
   "hello": "hello"
@@ -171,11 +181,13 @@ void main() async {
 ```
 
 #### **Example Input in Code:**
+
 ```dart
 "new_message".plural(3);
 ```
 
 #### **Generated Output (translations_en.json)**
+
 ```json
 {
   "new_message": "new_message"
