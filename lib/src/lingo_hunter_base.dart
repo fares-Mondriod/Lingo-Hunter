@@ -99,12 +99,18 @@ abstract class LingoHunter {
     final List<RegExp> defaultPatterns = [
       RegExp(r'"([^"]+)"\.tr\(\)'), // "string".tr()
       RegExp(r"'([^']+)'\.tr\(\)"), // 'string'.tr()
+      RegExp(r'"([^"]+)"\.tr'), // "string".tr
+      RegExp(r"'([^']+)'\.tr"), // 'string'.tr
       RegExp(r'"([^"]+)"\.tr\(\w+\)'), // "string".tr(context)
       RegExp(r"'([^']+)'\.tr\(\w+\)"), // 'string'.tr(context)
       RegExp(r'tr\(\w+, "([^"]+)"\)'), // tr(context, "string")
       RegExp(r"tr\(\w+, '([^']+)'\)"), // tr(context, 'string')
       RegExp(r'tr\("([^"]+)"\)'), // tr("string")
       RegExp(r"tr\('([^']+)'\)"), // tr('string')
+      RegExp(r'"([^"]+)"\.tr\(args: \[.*?\]\)'), // "string".tr(args: [])
+      RegExp(r'"([^"]+)"\.plural\(\d+\)'), // "string".plural(3)
+      //Intl Package Patterns
+      RegExp(r'AppLocalizations\.of\(context\)!\.translate\("([^"]+)"\)'),
     ];
 
     // Determine the patterns to use

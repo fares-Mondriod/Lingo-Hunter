@@ -27,6 +27,31 @@ Then run:
 dart pub get
 ```
 
+## 🔍 Supported Translation Formats
+
+LingoHunter supports multiple ways to define translatable strings in your Flutter project. The following formats are automatically detected:
+
+### ✅ **GetX (`.tr()`)**
+- `"Hello".tr();`
+- `'Welcome'.tr();`
+- `"Hi".tr;`
+- `'Goodbye'.tr;`
+- `"Message".tr(context);`
+- `'Notification'.tr(context);`
+- `tr("Success");`
+- `tr('Error');`
+- `tr(context, "Button");`
+- `tr(context, 'Label');`
+- `"Hello, {name}".tr(args: ["John"]);`
+
+### ✅ **Pluralization (`plural()`)**
+- `"new_message".plural(3);`
+
+### ✅ **Flutter's `intl` Package**
+- `AppLocalizations.of(context)!.translate("hello");`
+
+---
+
 ## 🔍 Usage Examples
 
 ### 1️⃣ **Basic Usage**
@@ -45,21 +70,31 @@ void main() async {
 }
 ```
 
-#### **Generated Output (translations_en.json)**
+#### **Example Input in Code:**
+```dart
+"Hello".tr();
+'Welcome'.tr();
+"Hi".tr;
+'tr_success'.tr(context);
+```
 
+#### **Generated Output (translations_en.json)**
 ```json
 {
   "Hello": "Hello",
-  "Welcome": "Welcome"
+  "Welcome": "Welcome",
+  "Hi": "Hi",
+  "tr_success": "tr_success"
 }
 ```
 
 #### **Generated Output (translations_ar.json, translations_fr.json, translations_es.json)**
-
 ```json
 {
   "Hello": "",
-  "Welcome": ""
+  "Welcome": "",
+  "Hi": "",
+  "tr_success": ""
 }
 ```
 
@@ -86,6 +121,18 @@ void main() async {
 }
 ```
 
+#### **Example Input in Code:**
+```dart
+AppLocalizations.of(context)!.translate("hello");
+```
+
+#### **Generated Output (translations_en.json)**
+```json
+{
+  "hello": "hello"
+}
+```
+
 ---
 
 ### 3️⃣ **Saving Translations in a Custom Directory**
@@ -107,9 +154,9 @@ void main() async {
 
 ---
 
-### 4️⃣ **Scanning Both Dart & JavaScript Files**
+### 4️⃣ **Pluralization Handling**
 
-Extract translatable strings from both `.dart` and `.js` files.
+LingoHunter can also extract pluralization keys:
 
 ```dart
 import 'package:lingo_hunter/lingo_hunter.dart';
@@ -118,59 +165,20 @@ void main() async {
   await LingoHunter.extractAndCreateTranslationFiles(
     baseLang: 'en',
     langs: ['es', 'ru'],
-    fileExtensions: ['.dart', '.js'],
   );
-  print("🎯 Extracted translation strings from both `.dart` and `.js` files!");
+  print("🎯 Extracted translation strings including plurals!");
 }
 ```
 
----
-
-### 5️⃣ **Disabling Base Language Translation**
-
-By default, the base language file includes keys with values. If you want only keys without values, set `translateBaseLang: false`.
-
+#### **Example Input in Code:**
 ```dart
-import 'package:lingo_hunter/lingo_hunter.dart';
-
-void main() async {
-  await LingoHunter.extractAndCreateTranslationFiles(
-    baseLang: 'en',
-    langs: ['ar', 'fr', 'es'],
-    translateBaseLang: false,
-  );
-  print("🚀 Translation files generated without base language values.");
-}
+"new_message".plural(3);
 ```
 
 #### **Generated Output (translations_en.json)**
-
 ```json
 {
-  "Hello": "",
-  "Welcome": ""
-}
-```
-
----
-
-### 6️⃣ **Overriding Default Regex Patterns**
-
-To fully replace the built-in regex patterns, set `overrideRegExps: true` and provide your custom patterns.
-
-```dart
-import 'package:lingo_hunter/lingo_hunter.dart';
-
-void main() async {
-  await LingoHunter.extractAndCreateTranslationFiles(
-    baseLang: 'en',
-    langs: ['ar', 'fr'],
-    overrideRegExps: true,
-    additionalRegExps: [
-      RegExp(r'gettext\("([^\"]+)"\)'), // Fully replacing default regex
-    ],
-  );
-  print("🔍 Extracted using custom regex patterns only!");
+  "new_message": "new_message"
 }
 ```
 
