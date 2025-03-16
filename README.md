@@ -30,22 +30,27 @@ dart pub get
 ## 🔍 Supported Translation Formats
 
 LingoHunter supports multiple ways to define translatable strings in your Flutter project. The following formats are automatically detected:
-
-### ✅ **GetX (`.tr()`)**
-
+### ✅ **Easy Localization**
 - `"Hello".tr();`
 - `'Welcome'.tr();`
 - `context.tr("settings");`
 - `context.tr('profile');`
-- `"Hi".tr;`
-- `'Goodbye'.tr;`
 - `"Message".tr(context);`
 - `'Notification'.tr(context);`
 - `tr("Success");`
 - `tr('Error');`
 - `tr(context, "Button");`
 - `tr(context, 'Label');`
+
+### ✅ **GetX (`.tr()`)**
+
+- `"Hello".tr();`
+- `'Welcome'.tr();`
+- `"Hi".tr;`
+- `'Goodbye'.tr;`
 - `"Hello, {name}".tr(args: ["John"]);`
+
+
 
 ### ✅ **Pluralization (`plural()`)**
 

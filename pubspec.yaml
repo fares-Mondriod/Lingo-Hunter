@@ -1,6 +1,6 @@
 name: lingo_hunter
 description: LingoHunter is a powerful Dart package designed to automatically extract translatable strings from Flutter projects and generate JSON translation files. This helps developers streamline their localization process efficiently.
-version: 1.0.1
+version: 1.0.3
 repository: https://github.com/fares-Mondriod/Lingo-Hunter
 
 environment:
