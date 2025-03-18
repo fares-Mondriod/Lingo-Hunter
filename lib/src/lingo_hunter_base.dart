@@ -1,5 +1,5 @@
-import 'dart:io';
 import 'dart:convert';
+import 'dart:io';
 
 abstract class LingoHunter {
   /// Extracts translatable strings from a Flutter project and generates translation files
@@ -103,8 +103,8 @@ abstract class LingoHunter {
       RegExp(r"'([^']+)'\.tr"), // 'string'.tr
       RegExp(r'"([^"]+)"\.tr\(\w+\)'), // "string".tr(context)
       RegExp(r"'([^']+)'\.tr\(\w+\)"), // 'string'.tr(context)
-      RegExp(r'context\.tr\("([^"]+)"\)'),  // context.tr("string")
-      RegExp(r"context\.tr\('([^']+)'\)"),  // context.tr('string')
+      RegExp(r'context\.tr\("([^"]+)"\)'), // context.tr("string")
+      RegExp(r"context\.tr\('([^']+)'\)"), // context.tr('string')
       RegExp(r'tr\(\w+, "([^"]+)"\)'), // tr(context, "string")
       RegExp(r"tr\(\w+, '([^']+)'\)"), // tr(context, 'string')
       RegExp(r'tr\("([^"]+)"\)'), // tr("string")
