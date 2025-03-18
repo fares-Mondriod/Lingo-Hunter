@@ -17,7 +17,7 @@ void main(List<String> arguments) async {
     ..addMultiOption('patterns',
         abbr: 'x', help: 'Custom regex patterns for translation extraction')
     ..addMultiOption('extensions',
-        abbr: 'e', help: 'File extensions to scan (e.g., .dart, .js)')
+        abbr: 'e', help: 'File extensions to scan (default: .dart)')
     ..addFlag('help',
         abbr: 'h', negatable: false, help: 'Show usage information');
 
@@ -38,7 +38,10 @@ void main(List<String> arguments) async {
           ?.map((p) => RegExp(p))
           .toList() ??
       [];
-  final fileExtensions = argResults['extensions']?.cast<String>();
+
+  final fileExtensions = (argResults['extensions'] as List).isEmpty
+      ? ['.dart']
+      : argResults['extensions'];
 
   await LingoHunter.extractAndCreateTranslationFiles(
     baseLang: baseLang,
